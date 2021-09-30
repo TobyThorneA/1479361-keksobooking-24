@@ -1,17 +1,17 @@
-function reditTemereInteger (min, max){
+function getRandomInteger (min, max){
   if (max <= min || min < 0){
-    return 'error';
+    throw Error('Неверно указан заданный диапазон чисел!');
   }
   return Math.round(Math.random() * (max - min) + min);
 }
-reditTemereInteger(1, 10);
+getRandomInteger(1, 10);
 
-function reditTemereFractus (min, max, after){
+function getRandomFraction (min, max, after){
   if (max <= min || min < 0){
-    return 'error';
+    throw Error('Неверно указан диапазон чисел!');
   }else{
     const random = Math.random() * (max - min) + min;
     return random.toFixed(after);
   }
 }
-reditTemereFractus(1, 10, 3);
+getRandomFraction(1, 10, 3);
