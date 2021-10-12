@@ -40,7 +40,7 @@ function generateData () {
     const lng = getRandomFraction(139.70000, 139.8000, 5);
     const avatarPng = {
       avatar: {
-        author: `img/avatars/user${[index].toString().padStart(2, '0')}.png`,
+        author: `img/avatars/user${index.toString().padStart(2, '0')}.png`,
       },
       offer: {
         title: 'Адрес предложения',
