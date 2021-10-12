@@ -1,20 +1,16 @@
-/* eslint-disable no-console */
 const arrayPng = 10;
-const adsadvertisement = [];
+const adsAdvertisements = [];
 const types = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
 const checkinTime = ['12:00', '13:00', '14:00'];
 const checkoutTime = ['12:00', '13:00', '14:00'];
 const features = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator',' conditioner'];
 const photos = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
-const userPng = ['01', '02','03', '04', '05', '06', '07', '08', '09', '10'];
-const randomNameIndex = _.random(0, userPng.length - 1);
 function getRandomInteger (min, max){
   if (max <= min || min < 0){
     throw Error('Неверно указан заданный диапазон чисел!');
   }
   return Math.round(Math.random() * (max - min) + min);
 }
-getRandomInteger(1, 10);
 function getRandomFraction (min, max, after){
   if (max <= min || min < 0){
     throw Error('Неверно указан диапазон чисел!');
@@ -23,14 +19,13 @@ function getRandomFraction (min, max, after){
     return random.toFixed(after);
   }
 }
-getRandomFraction(1, 10, 3);
 // Функцию getArray взял с сайта : https://ru.stackoverflow.com/questions/1293985/Как-создать-массив-строк-из-случайной-длины-и-случайных-значений
 // Не очень хорошо понял как она работает.
 function getArray(randomLength) {
   const maxLength = randomLength.length;
   const lengthOfArray = getRandomInteger(1, maxLength);
   const array = [];
-  for(let foo = 0; foo < lengthOfArray; foo++) {
+  for(let index = 0; index < lengthOfArray; index++) {
     const indexOfEl = getRandomInteger(0, 5);
     const el = randomLength[indexOfEl];
     if (!array.includes(el)) {
@@ -39,20 +34,17 @@ function getArray(randomLength) {
   }
   return array;
 }
-//console.log(getArray(features))
-function getFunction () {
-
-  for(let foo = 0; foo <= arrayPng; foo++) {
+function generateData () {
+  for(let index = 1; index <= arrayPng; index++) {
     const lat = getRandomFraction(35.65000, 37.70000, 5);
     const lng = getRandomFraction(139.70000, 139.8000, 5);
-
     const avatarPng = {
       avatar: {
-        author: `img/${randomNameIndex}.png`,
+        author: `img/avatars/user${[index].toString().padStart(2, '0')}.png`,
       },
       offer: {
         title: 'Адрес предложения',
-        adress: `${lat} ${lng}`,
+        address: `${lat}, ${lng}`,
         price: getRandomInteger(1, 1000),
         type: types[getRandomInteger(0, 4)],
         rooms: getRandomInteger(1, 5),
@@ -66,8 +58,7 @@ function getFunction () {
         lng: lng,
       },
     };
-    adsadvertisement.push(avatarPng);
+    adsAdvertisements.push(avatarPng);
   }
 }
-getFunction();
-console.log(adsadvertisement);
+generateData();
