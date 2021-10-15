@@ -4,14 +4,12 @@ function getRandomInteger (smaller, larger){
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 }
-export{getRandomInteger};
 function getRandomFraction (smaller, larger, after = 1){
   const lower = Math.min(Math.abs(smaller), Math.abs(larger));
   const upper = Math.max(Math.abs(smaller), Math.abs(larger));
   const result = Math.random() * (upper - lower) + lower;
   return result.toFixed(after);
 }
-export{getRandomFraction};
 // Функцию getArray взял с сайта : https://ru.stackoverflow.com/questions/1293985/Как-создать-массив-строк-из-случайной-длины-и-случайных-значений
 // Не очень хорошо понял как она работает.
 function getArray(randomLength) {
@@ -27,4 +25,4 @@ function getArray(randomLength) {
   }
   return array;
 }
-export {getArray};
+export {getRandomInteger, getRandomFraction, getArray};
