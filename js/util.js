@@ -17,7 +17,7 @@ function getArray(randomLength) {
   const lengthOfArray = getRandomInteger(0, maxLength);
   const array = [];
   for(let index = 0; index < lengthOfArray; index++) {
-    const indexOfEl = getRandomInteger(0, maxLength);
+    const indexOfEl = getRandomInteger(1, maxLength);
     const el = randomLength[indexOfEl];
     if (!array.includes(el)) {
       array.push(el);
