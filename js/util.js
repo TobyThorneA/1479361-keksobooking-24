@@ -14,10 +14,10 @@ function getRandomFraction (smaller, larger, after = 1){
 // Не очень хорошо понял как она работает.
 function getArray(randomLength) {
   const maxLength = randomLength.length;
-  const lengthOfArray = getRandomInteger(1, maxLength);
+  const lengthOfArray = getRandomInteger(0, maxLength);
   const array = [];
   for(let index = 0; index < lengthOfArray; index++) {
-    const indexOfEl = getRandomInteger(0, 5);
+    const indexOfEl = getRandomInteger(1, maxLength);
     const el = randomLength[indexOfEl];
     if (!array.includes(el)) {
       array.push(el);
