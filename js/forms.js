@@ -1,5 +1,9 @@
 const roomNumber = document.querySelector('#room_number');
 const capacityGuest = document.querySelector('#capacity');
+const typeOfHousing = document.querySelector('#type');
+const priceNight = document.querySelector('#price');
+const timeIn = document.querySelector('#timein');
+const timeOut = document.querySelector('#timeout');
 
 roomNumber.addEventListener('change', (evt) =>{
   if(evt.target.value === '1' && capacityGuest.value === '1'){
@@ -35,7 +39,7 @@ capacityGuest.addEventListener('change', (evt) =>{
     roomNumber.setCustomValidity('');
     capacityGuest.setCustomValidity('');
   }
-  else if(evt.target.value === '100' && roomNumber.value === '0'){
+  else if(evt.target.value === '0' && roomNumber.value === '100'){
     roomNumber.setCustomValidity('');
     capacityGuest.setCustomValidity('');
   }else{
@@ -44,41 +48,42 @@ capacityGuest.addEventListener('change', (evt) =>{
 
 });
 
+typeOfHousing.addEventListener('change', (evt) => {
+  if(evt.target.value === 'bungalow'){
+    priceNight.setAttribute('min', 0);
+    priceNight.setAttribute('placeholder', '0');
+  }
+  else if(evt.target.value === 'flat'){
+    priceNight.setAttribute('min', 1000);
+    priceNight.setAttribute('placeholder', '1000');
+  }
+  else if(evt.target.value === 'hotel'){
+    priceNight.setAttribute('min', 3000);
+    priceNight.setAttribute('placeholder', '3000');
+  }
+  else if(evt.target.value === 'house'){
+    priceNight.setAttribute('min', 5000);
+    priceNight.setAttribute('placeholder', '5000');
+  }
+  else if(evt.target.value === 'palace'){
+    priceNight.setAttribute('min', 10000);
+    priceNight.setAttribute('placeholder', '10000');
+  }
+});
+timeIn.addEventListener('change', (evt) => {
+  const {
+    target: { value },
+  } = evt;
+
+  timeOut.value = value;
+});
+
+timeOut.addEventListener('change', (evt) => {
+  const {
+    target: { value },
+  } = evt;
+
+  timeIn.value = value;
+});
+
 export {};
-
-// Вторая часть задания
-// const typeOfHousing = document.querySelector('#type');
-// const priceNight = document.querySelector('#price');
-// const timeIn = document.querySelector('#timein');
-// const timeOut = document.querySelector('#timeout');
-// typeOfHousing.addEventListener('change', (evt) => {
-//   if(evt.target.value === 'bungalow'){
-//     priceNight.setAttribute('min', 0);
-//     priceNight.setAttribute('placeholder', '0');
-//   }
-//   else if(evt.target.value === 'flat'){
-//     priceNight.setAttribute('min', 1000);
-//     priceNight.setAttribute('placeholder', '1000');
-//   }
-//   else if(evt.target.value === 'hotel'){
-//     priceNight.setAttribute('min', 3000);
-//     priceNight.setAttribute('placeholder', '3000');
-//   }
-//   else if(evt.target.value === 'house'){
-//     priceNight.setAttribute('min', 5000);
-//     priceNight.setAttribute('placeholder', '5000');
-//   }
-//   else if(evt.target.value === 'palace'){
-//     priceNight.setAttribute('min', 10000);
-//     priceNight.setAttribute('placeholder', '10000');
-//   }
-// });
-// timeIn.addEventListener('change', (evt) => {
-//   const {
-//     target: { value },
-//   } = evt;
-
-//   timeOut.value = value;
-
-//     console.log(timeIn[0], timeOut);
-// });
