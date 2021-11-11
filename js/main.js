@@ -5,3 +5,5 @@ adsAdvertisements;
 import './generate.js';
 import {dataList} from './generate.js';
 dataList;
+
+import './forms.js';
