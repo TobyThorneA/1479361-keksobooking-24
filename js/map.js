@@ -54,7 +54,7 @@ const similarIconSvg = L.icon({
 
 
 const createCastumBalloon = (ad) =>`<article class="popup">
-      <img src=${ad.author.avatart} class="popup__avatar" width="70" height="70" alt="Аватар пользователя">
+      <img src=${ad.author.avatar} class="popup__avatar" width="70" height="70" alt="Аватар пользователя">
       <h3 class="popup__title">${ad.offer.title}</h3>
       <p class="popup__text popup__text--address">${ad.offer.address}</p>
       <p class="popup__text popup__text--price">${ad.offer.price} <span>₽/ночь</span></p>
