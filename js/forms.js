@@ -6,6 +6,7 @@ const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
 const adForm = document.querySelector('.ad-form');
 const mapFilters = document.querySelector('.map__filters');
+
 adForm.classList.add('ad-form--disabled');
 mapFilters.classList.add('map__filters--disabled');
 
@@ -90,4 +91,4 @@ timeOut.addEventListener('change', (evt) => {
   timeIn.value = value;
 });
 
-export {};
+export{adForm,mapFilters};

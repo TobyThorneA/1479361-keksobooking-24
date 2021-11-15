@@ -4,7 +4,6 @@ adsAdvertisements;
 const cardTemplateContainer = document.querySelector('#card').content;
 const dataList = cardTemplateContainer.querySelector('.popup');
 const newDataFragment = document.createDocumentFragment();
-const createDomElement = document.querySelector('#map-canvas');
 const assigningValue = function (type){
   switch (type) {
     case 'palace':
@@ -22,7 +21,7 @@ const assigningValue = function (type){
       '';
   }
 };
-const assignment = function(array){
+const assignment = (array) => {
   for (let i = 0; i < array.length; i++){
     const newElement = dataList.cloneNode(true);
     if(array[i].offer.title){
@@ -52,8 +51,8 @@ const assignment = function(array){
     if(array[i].offer.photos){
       newElement.querySelector('.popup__photos').src = array[i].offer.photos;
     }
-    if(array[i].avatar.author){
-      newElement.querySelector('.popup__avatar').src = array[i].avatar.author;
+    if(array[i].author.avatar){
+      newElement.querySelector('.popup__avatar').src = array[i].author.avatar;
     }
     if (array[i] === array[0]){
       newDataFragment.appendChild(newElement);
@@ -61,5 +60,4 @@ const assignment = function(array){
   }
 };
 assignment(adsAdvertisements);
-createDomElement.appendChild(newDataFragment);
-export {dataList};
+export {dataList,assigningValue};
