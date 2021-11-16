@@ -7,3 +7,5 @@ import {dataList} from './generate.js';
 dataList;
 
 import './forms.js';
+import './map.js';
+
