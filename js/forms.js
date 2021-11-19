@@ -6,6 +6,30 @@ const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
 const adForm = document.querySelector('.ad-form');
 const mapFilters = document.querySelector('.map__filters');
+const adFormReset = document.querySelector('.ad-form__reset');
+
+adFormReset.addEventListener('click', () => {
+  adForm.reset();
+});
+
+export const showPopover = (status) => {
+  const body = document.querySelector('body');
+  const template = document.querySelector(`#${status}`).content;
+  const message = template.firstElementChild.cloneNode(true);
+  const onEscapeKeyPress = (evt) => {
+    if (evt.key === 'Escape') {
+      message.remove();
+      window.removeEventListener('keydown', onEscapeKeyPress);
+    }
+  };
+  const onMessageClick = () => {
+    message.remove();
+    window.removeEventListener('keydown', onEscapeKeyPress);
+  };
+  message.addEventListener('click', onMessageClick);
+  window.addEventListener('keydown', onEscapeKeyPress);
+  body.appendChild(message);
+};
 
 adForm.classList.add('ad-form--disabled');
 mapFilters.classList.add('map__filters--disabled');
@@ -91,4 +115,4 @@ timeOut.addEventListener('change', (evt) => {
   timeIn.value = value;
 });
 
-export{adForm,mapFilters};
+export{adForm,mapFilters,adFormReset};
