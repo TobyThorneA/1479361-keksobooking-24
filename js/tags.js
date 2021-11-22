@@ -7,7 +7,7 @@ const mapFilters = document.querySelector('.map__filters');
 const formAdress = document.querySelector('#address');
 const adFormReset = document.querySelector('.ad-form__reset');
 
-formAdress.defaultValue = 'Координаты: 35.68390, 139.75323';
+formAdress.defaultValue = 'Координаты: 35.6895, 139.692';
 
 const mainIconSvg = L.icon({
   iconUrl: '../img/main-pin.svg',
@@ -65,11 +65,18 @@ const rendersData = (received) => {
         .bindPopup(createCustomBalloon(object));
     });
 };
-const filtersByEvent = (data) => {
+const filtersByEvent = (filter) => {
   mapFilters.addEventListener('change', debounce(() => {
     markerGroup.clearLayers();
-    rendersData(data);
+    rendersData(filter);
   }));
 };
 
-export {mainIcon, rendersData, filtersByEvent};
+const resetsLabels = (label) => {
+  adFormReset.addEventListener('click', ()=>{
+    markerGroup.clearLayers();
+    rendersData(label);
+  });
+};
+
+export {mainIcon, rendersData, filtersByEvent, resetsLabels};

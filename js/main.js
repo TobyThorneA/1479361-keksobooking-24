@@ -1,7 +1,7 @@
 import './filters.js';
 import './map.js';
 import './tags.js';
-import {showPopover, adForm,mapFilters} from './forms.js';
+import {showPopover, adForm,mapFilters} from './form.js';
 import {sendFormSubmit} from './api.js';
 import {mainIcon} from './tags.js';
 import {map} from './map.js';

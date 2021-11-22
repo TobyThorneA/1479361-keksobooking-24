@@ -1,16 +1,17 @@
-import './forms.js';
-import {adForm, mapFilters} from './forms.js';
+import './form.js';
+import {activateMainForm ,deactivatePage} from './form.js';
 
 const adFormReset = document.querySelector('.ad-form__reset');
 
+deactivatePage();
+
 const map = L.map('map-canvas')
   .on('load', () => {
-    adForm.classList.remove('ad-form--disabled');
-    mapFilters.classList.remove('map__filters--disabled');
+    activateMainForm();
   })
   .setView({
-    lat: 35.68390,
-    lng: 139.75323,
+    lat: 35.6895,
+    lng: 139.692,
   }, 10);
 
 L.tileLayer(
