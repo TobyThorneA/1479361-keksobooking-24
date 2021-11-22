@@ -1,18 +1,21 @@
-
-// import  './data.js';
-// import {adsAdvertisements} from './data.js';
-// adsAdvertisements;
-// import './generate.js';
-// import {dataList} from './generate.js';
-// dataList;
-
+import './filters.js';
 import './map.js';
-import { showPopover, adForm } from './forms.js';
-import { sendFormSubmit } from './api.js';
+import './tags.js';
+import {showPopover, adForm,mapFilters} from './form.js';
+import {sendFormSubmit} from './api.js';
+import {mainIcon} from './tags.js';
+import {map} from './map.js';
+
 
 const onFormSubmitSuccess = () => {
   showPopover('success');
   adForm.reset();
+  mapFilters.reset();
+  map.closePopup();
+  mainIcon.setLatLng({
+    lat: 35.6895,
+    lng: 139.692,
+  });
 };
 
 const onFormSubmitError = () => {

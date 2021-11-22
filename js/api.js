@@ -1,10 +1,17 @@
-import {rendersData} from './tags.js';
-import {adForm} from './forms.js';
+import {filtersByEvent, rendersData,resetsLabels} from './tags.js';
+import {adForm,activateFilterForm} from './form.js';
+import {showAlert} from './util.js';
 
 fetch('https://24.javascript.pages.academy/keksobooking/data')
   .then((response) => response.json())
   .then((data) => {
     rendersData(data);
+    filtersByEvent(data);
+    activateFilterForm(data);
+    resetsLabels(data);
+  })
+  .catch(() =>{
+    showAlert();
   });
 
 const sendFormSubmit = (onSuccess, onError) => {
@@ -30,5 +37,6 @@ const sendFormSubmit = (onSuccess, onError) => {
       });
   });
 };
+
 
 export {sendFormSubmit};

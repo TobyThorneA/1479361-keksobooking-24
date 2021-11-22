@@ -10,9 +10,23 @@ const adFormReset = document.querySelector('.ad-form__reset');
 
 adFormReset.addEventListener('click', () => {
   adForm.reset();
+  mapFilters.reset();
 });
 
-export const showPopover = (status) => {
+const deactivatePage = () => {
+  adForm.classList.add('ad-form--disabled');
+  mapFilters.classList.add('map__filters--disabled');
+};
+
+const activateFilterForm = function () {
+  mapFilters.classList.remove('map__filters--disabled');
+};
+
+const activateMainForm = () => {
+  adForm.classList.remove('ad-form--disabled');
+};
+
+const showPopover = (status) => {
   const body = document.querySelector('body');
   const template = document.querySelector(`#${status}`).content;
   const message = template.firstElementChild.cloneNode(true);
@@ -31,8 +45,6 @@ export const showPopover = (status) => {
   body.appendChild(message);
 };
 
-adForm.classList.add('ad-form--disabled');
-mapFilters.classList.add('map__filters--disabled');
 
 roomNumber.addEventListener('change', (evt) =>{
   if(evt.target.value === '1' && capacityGuest.value === '1'){
@@ -115,4 +127,4 @@ timeOut.addEventListener('change', (evt) => {
   timeIn.value = value;
 });
 
-export{adForm,mapFilters,adFormReset};
+export{adForm,mapFilters,adFormReset,showPopover,deactivatePage,activateFilterForm,activateMainForm};
