@@ -16,26 +16,85 @@ const assigningValue = function (type){
   }
 };
 
-const createCustomBalloon = (ad) =>`<article class="popup">
-      <img src=${ad.author.avatar} class="popup__avatar" width="70" height="70" alt="Аватар пользователя">
-      <h3 class="popup__title">${ad.offer.title}</h3>
-      <p class="popup__text popup__text--address">${ad.offer.address}</p>
-      <p class="popup__text popup__text--price">${ad.offer.price} <span>₽/ночь</span></p>
-      <h4 class="popup__type">${assigningValue(ad.offer.type)}</h4>
-      <p class="popup__text popup__text--capacity">${ad.offer.rooms} комнаты для ${ad.offer.guests} гостей</p>
-      <p class="popup__text popup__text--time">Заезд после ${ad.offer.checkin}, выезд до ${ad.offer.checkout}</p>
-      <ul class="popup__features">
-        <li class="popup__feature popup__feature--wifi"></li>
-        <li class="popup__feature popup__feature--dishwasher"></li>
-        <li class="popup__feature popup__feature--parking"></li>
-        <li class="popup__feature popup__feature--washer"></li>
-        <li class="popup__feature popup__feature--elevator"></li>
-        <li class="popup__feature popup__feature--conditioner"></li>
-      </ul>
-      <p class="popup__description">${ad.offer.description}</p>
-      <div class="popup__photos">
-        <img src=${ad.offer.photos} class="popup__photo" width="45" height="40" alt="Фотография жилья">
-      </div>
-    </article>`;
+const advertTemplate = document.querySelector('#card').content.querySelector('.popup');
+const advertImgElement = document.querySelector('#card').content.querySelector('.popup__photo');
+
+const generateImgs = (array = []) => {
+  const newImages = [];
+  array.forEach((item) => {
+    const imgTemplate = advertImgElement.cloneNode(true);
+    imgTemplate.src = item;
+    newImages.push(imgTemplate);
+  });
+  return newImages;
+};
+
+const fillTextNode = (node, fieldList, optionalString, nodeAttribute = 'textContent') => {
+  const isHaveAllFields = fieldList.every((field) => field);
+  if (isHaveAllFields) {
+    node[nodeAttribute] = optionalString || fieldList[0];
+  }
+  else {
+    node.remove();
+  }
+};
+
+const createCustomBalloon = (advert) => {
+  const advertCard = advertTemplate.cloneNode(true);
+  const title = advert.offer.title;
+  const titleNode = advertCard.querySelector('.popup__title');
+  const address = advert.offer.address;
+  const addressNode = advertCard.querySelector('.popup__text--address');
+  const price = advert.offer.price;
+  const priceNode = advertCard.querySelector('.popup__text--price');
+  const type = assigningValue(advert.offer.type);
+  const typeNode = advertCard.querySelector('.popup__type');
+  const rooms = advert.offer.rooms;
+  const guests = advert.offer.guests;
+  const capacityNode = advertCard.querySelector('.popup__text--capacity');
+  const checkin = advert.offer.checkin;
+  const checkout = advert.offer.checkout;
+  const timeNode = advertCard.querySelector('.popup__text--time');
+  const features = advert.offer.features;
+  const featuresNode = advertCard.querySelector('.popup__features');
+  const featureListNode = featuresNode.querySelectorAll('.popup__feature');
+  const description = advert.offer.description;
+  const descriptionNode = advertCard.querySelector('.popup__description');
+  const avatar = advert.author.avatar;
+  const avatarNode = advertCard.querySelector('.popup__avatar');
+  const photosNode = advertCard.querySelector('.popup__photos');
+  const photoElement = photosNode.querySelector('.popup__photo');
+  const photosArray = generateImgs(advert.offer.photos);
+  fillTextNode(titleNode, [title]);
+  fillTextNode(addressNode, [address]);
+  fillTextNode(typeNode, [type]);
+  fillTextNode(priceNode, [price], `${price} ₽/ночь`);
+  fillTextNode(capacityNode, [rooms, guests], `${rooms} комнаты для ${guests} гостей`);
+  fillTextNode(timeNode, [checkin, checkout], `Заезд после ${checkin}, выезд до ${checkout}`);
+  fillTextNode(descriptionNode, [description]);
+  fillTextNode(avatarNode, [avatar], null, 'src');
+  if (features) {
+    featureListNode.forEach((featureListItem) => {
+      const isNecessary = features.some(
+        (featureName) => featureListItem.classList.contains(`popup__feature--${featureName}`),
+      );
+      if (!isNecessary) {
+        featureListItem.remove();
+      }
+    });
+  }
+  else {
+    featuresNode.remove();
+  }
+  photoElement.remove();
+  if (photosArray.length) {
+    photosNode.append(...photosArray);
+  }
+  else {
+    photosNode.remove();
+  }
+  return advertCard;
+};
+
 
 export {createCustomBalloon};

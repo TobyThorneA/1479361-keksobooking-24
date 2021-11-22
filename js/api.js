@@ -1,10 +1,15 @@
-import {rendersData} from './tags.js';
+import {filtersByEvent, rendersData} from './tags.js';
 import {adForm} from './forms.js';
+import {showAlert} from './util.js';
 
 fetch('https://24.javascript.pages.academy/keksobooking/data')
   .then((response) => response.json())
   .then((data) => {
     rendersData(data);
+    filtersByEvent(data);
+  })
+  .catch(() =>{
+    showAlert();
   });
 
 const sendFormSubmit = (onSuccess, onError) => {

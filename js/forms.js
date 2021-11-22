@@ -10,9 +10,10 @@ const adFormReset = document.querySelector('.ad-form__reset');
 
 adFormReset.addEventListener('click', () => {
   adForm.reset();
+  mapFilters.reset();
 });
 
-export const showPopover = (status) => {
+const showPopover = (status) => {
   const body = document.querySelector('body');
   const template = document.querySelector(`#${status}`).content;
   const message = template.firstElementChild.cloneNode(true);
@@ -115,4 +116,4 @@ timeOut.addEventListener('change', (evt) => {
   timeIn.value = value;
 });
 
-export{adForm,mapFilters,adFormReset};
+export{adForm,mapFilters,adFormReset,showPopover};
